@@ -1,16 +1,9 @@
 (ns sscce-midje-lazy-throw.core)
 
-(defn process-one
-  [x]
-  (try
-    (/ x)
-    (catch Exception e
-      (throw (RuntimeException. "other")))))
-
-(defn process-all
+(defn invert
   [xs]
-  (map process-one xs))
+  (map / xs))
 
 (defn update-atom
   [a xs]
-  (reset! a {:k1 "new" :k2 (process-all xs)}))
+  (reset! a {:k1 "new" :k2 (invert xs)}))

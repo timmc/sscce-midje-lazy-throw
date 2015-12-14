@@ -9,7 +9,7 @@
       @a => {:k1 "new" :k2 [1]}))
   (fact "- with exception"
     (let [a (atom {:k1 "old" :k2 "old"})]
-      (src/update-atom a [1 0 1]) => (throws RuntimeException "other")
+      (src/update-atom a [1 0 1]) => (throws ArithmeticException)
       @a => {:k1 "old" :k2 "old"})))
 
 ;; $ lein midje
